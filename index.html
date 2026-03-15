@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fazza Jar | تجربة النخوة 2026</title>
+    <title>Fazza Jar | Smart District OS 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0c0c0e;
-            --primary: #8b5cf6;
-            --accent: #10b981;
-            --glass: rgba(255, 255, 255, 0.05);
+            --bg: #050507;
+            --primary: #7c3aed;
+            --accent: #00f2ff; /* نيون سماوي للرهابة التقنية */
+            --success: #10b981;
+            --glass: rgba(255, 255, 255, 0.03);
+            --neon-glow: 0 0 15px rgba(0, 242, 255, 0.5);
         }
 
         body {
@@ -25,199 +27,197 @@
             overflow: hidden;
         }
 
-        .app-container {
-            width: 100%;
-            max-width: 400px;
-            height: 90vh;
-            background: #131316;
-            border-radius: 40px;
-            border: 2px solid var(--glass);
+        /* حاوية الجهاز المستقبلي */
+        .device-frame {
+            width: 380px;
+            height: 800px;
+            background: #0f172a;
+            border-radius: 50px;
+            border: 4px solid #1e293b;
             position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 100px rgba(124, 58, 237, 0.2);
             display: flex;
             flex-direction: column;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
-        /* Nav */
-        nav {
-            padding: 25px;
+        /* شريط الحالة الذكي */
+        .status-bar {
+            padding: 20px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid var(--glass);
+            background: rgba(0,0,0,0.5);
+            z-index: 100;
         }
 
-        .score-badge {
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid var(--accent);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
+        .ai-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: var(--accent);
         }
 
-        /* Steps */
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        /* مراحل الرحلة */
         .step {
             display: none;
             flex: 1;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
             padding: 20px;
-            text-align: center;
-            animation: fadeIn 0.4s ease-out;
+            animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .step.active { display: flex; }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Radar Interface */
-        .radar-box {
+        /* الرادار المطور 3D */
+        .radar-container {
             position: relative;
-            width: 280px;
-            height: 280px;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            border-radius: 50%;
-            margin-bottom: 30px;
+            width: 320px;
+            height: 320px;
+            margin: 40px auto;
+            perspective: 1000px;
         }
 
-        .scanner {
+        .grid-bg {
             position: absolute;
             width: 100%;
             height: 100%;
-            border-radius: 50%;
-            background: conic-gradient(from 0deg, transparent, var(--primary));
-            opacity: 0.15;
-            animation: scan 4s linear infinite;
+            background-image: 
+                linear-gradient(rgba(124, 58, 237, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(124, 58, 237, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            transform: rotateX(60deg);
+            border-radius: 20px;
         }
 
-        .neighbor-node {
+        .radar-core {
             position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            animation: rotate 10s linear infinite;
+        }
+
+        .node {
+            position: absolute;
+            width: 45px;
+            height: 45px;
             background: var(--glass);
-            width: 50px;
-            height: 50px;
+            border: 1px solid var(--accent);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: 0.4s;
+            box-shadow: var(--neon-glow);
+        }
+
+        .node:hover {
+            transform: scale(1.3) translateY(-10px);
+            background: var(--accent);
+            color: black;
+        }
+
+        /* نظام التنبيهات الاستباقية */
+        .insight-card {
+            background: rgba(255,255,255,0.05);
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            animation: bounce 2s infinite;
+        }
+
+        /* الربط اللاسلكي */
+        .sync-animation {
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .sync-circle {
+            width: 80px;
+            height: 80px;
+            border: 3px solid var(--success);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.5rem;
-            cursor: pointer;
-            border: 1px solid var(--primary);
-            transition: 0.3s;
-            z-index: 10;
+            font-size: 2rem;
         }
 
-        .neighbor-node:hover {
-            transform: scale(1.2);
-            box-shadow: 0 0 20px var(--primary);
-        }
-
-        @keyframes scan { to { transform: rotate(360deg); } }
-
-        /* Progress Interaction */
-        .loading-container {
-            width: 80%;
-            height: 8px;
-            background: #222;
-            border-radius: 4px;
-            margin: 20px 0;
+        .beam {
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--success));
+            position: relative;
             overflow: hidden;
         }
 
-        .bar {
-            width: 0%;
+        .beam::after {
+            content: '';
+            position: absolute;
+            width: 30px;
             height: 100%;
-            background: var(--accent);
-            box-shadow: 0 0 10px var(--accent);
+            background: white;
+            animation: stream 1s infinite;
         }
 
-        .active .bar { animation: fill 3s forwards; }
+        @keyframes stream { 0% { left: -30px; } 100% { left: 100%; } }
+        @keyframes rotate { to { transform: rotate(360deg); } }
+        @keyframes pulse { 0% { opacity: 0.2; } 50% { opacity: 1; } 100% { opacity: 0.2; } }
 
-        @keyframes fill { to { width: 100%; } }
-
-        /* Rating */
-        .stars { font-size: 2rem; gap: 10px; display: flex; margin-top: 20px; cursor: pointer; }
-        .stars span:hover { color: var(--accent); }
-
-        .btn-reset {
-            margin-top: 30px;
-            background: var(--primary);
+        /* الأزرار الفاخرة */
+        .btn-finish {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
             border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
             color: white;
-            padding: 12px 30px;
-            border-radius: 25px;
+            font-weight: bold;
             cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
     </style>
 </head>
 <body>
 
-    <div class="app-container">
-        <nav>
-            <strong style="color: var(--primary)">فزعة جار</strong>
-            <div class="score-badge">🏆 نـخوة: <span id="main-score">150</span></div>
-        </nav>
+    <div class="device-frame">
+        <div class="status-bar">
+            <div class="ai-status">
+                <div class="pulse-dot"></div>
+                AI الحي نشط
+            </div>
+            <div id="global-score" style="color: var(--success); font-weight: bold;">🏆 150</div>
+        </div>
 
         <div id="step1" class="step active">
-            <div class="radar-box">
-                <div class="scanner"></div>
-                <div class="neighbor-node" style="top: 20%; left: 20%;" onclick="goNext('أبو أحمد', '🔨 مطرقة')">🔨</div>
-                <div class="neighbor-node" style="top: 10%; right: 25%;" onclick="goNext('عائلة خالد', '🪜 سلم')">🪜</div>
-                <div class="neighbor-node" style="bottom: 25%; left: 30%;" onclick="goNext('فني فيصل', '💡 كهرباء')">💡</div>
-                <div style="position: absolute; top:50%; left:50%; transform:translate(-50%, -50%); font-size: 2rem;">📍</div>
+            <div class="radar-container">
+                <div class="grid-bg"></div>
+                <div class="radar-core"></div>
+                <div class="node" style="top: 15%; left: 10%;" onclick="startFlow('أبو خالد', '🔨 مطرقة ثقيلة')">🔨</div>
+                <div class="node" style="top: 50%; right: 10%;" onclick="startFlow('منزل السعد', '🪜 سلم هيدروليك')">🪜</div>
+                <div class="node" style="bottom: 10%; left: 40%;" onclick="startFlow('المهندس فهد', '💡 فحص كهرباء')">💡</div>
             </div>
-            <h2 style="color: var(--accent)">رادار النخوة نشط</h2>
-            <p>اختر الأداة أو الجار القريب منك للبدء</p>
-        </div>
-
-        <div id="step2" class="step">
-            <h2 id="connect-title">جاري التوصيل...</h2>
-            <p id="connect-desc"></p>
-            <div class="loading-container"><div class="bar"></div></div>
-            <div style="font-size: 4rem; margin-top: 20px;">📦</div>
-        </div>
-
-        <div id="step3" class="step">
-            <div style="font-size: 5rem;">✅</div>
-            <h2 style="color: var(--accent)">تمت الفزعة!</h2>
-            <p>قيم تجربتك لتوثيق "النخوة" في ملف الجار</p>
-            <div class="stars">
-                <span onclick="finish()">⭐</span><span onclick="finish()">⭐</span><span onclick="finish()">⭐</span><span onclick="finish()">⭐</span><span onclick="finish()">⭐</span>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function goNext(name, item) {
-            // الانتقال للمرحلة 2
-            document.getElementById('step1').classList.remove('active');
-            document.getElementById('step2').classList.add('active');
-            
-            document.getElementById('connect-title').innerText = `ربط مع ${name}`;
-            document.getElementById('connect-desc').innerText = `طلب استعارة ${item} قيد التنفيذ الآن..`;
-
-            // محاكاة انتهاء العملية
-            setTimeout(() => {
-                document.getElementById('step2').classList.remove('active');
-                document.getElementById('step3').classList.add('active');
-            }, 3200);
-        }
-
-        function finish() {
-            const score = document.getElementById('main-score');
-            score.innerText = parseInt(score.innerText) + 15;
-            
-            alert("كفو! تم تحديث مؤشر النخوة الخاص بك وبجيرانك 🏆");
-            
-            // العودة للبداية
-            setTimeout(() => {
-                document.getElementById('step3').classList.remove('active');
-                document.getElementById('step1').classList.add('active');
-            }, 500);
-        }
-    </script>
-</body>
-</html>
+            <h2 style="color: var(--accent); text-shadow: var(--neon-glow);">رادار النخوة</h2>

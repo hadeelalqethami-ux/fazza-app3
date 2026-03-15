@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fazza Jar | Smart District OS 2026</title>
+    <title>Fazza Jar | Hyper-Local Dashboard 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #050507;
-            --primary: #7c3aed;
-            --accent: #00f2ff; /* نيون سماوي للرهابة التقنية */
+            --bg: #08080a;
+            --primary: #8b5cf6;
+            --accent: #00f2ff;
             --success: #10b981;
-            --glass: rgba(255, 255, 255, 0.03);
-            --neon-glow: 0 0 15px rgba(0, 242, 255, 0.5);
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --glass: rgba(255, 255, 255, 0.04);
         }
 
         body {
@@ -22,202 +23,171 @@
             font-family: 'Tajawal', sans-serif;
             display: flex;
             justify-content: center;
-            align-items: center;
             height: 100vh;
             overflow: hidden;
         }
 
-        /* حاوية الجهاز المستقبلي */
-        .device-frame {
-            width: 380px;
-            height: 800px;
-            background: #0f172a;
-            border-radius: 50px;
-            border: 4px solid #1e293b;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 100px rgba(124, 58, 237, 0.2);
+        /* حاوية النظام */
+        .system-container {
+            width: 100%;
+            max-width: 450px;
+            height: 100vh;
+            background: #0f1115;
             display: flex;
             flex-direction: column;
+            border-left: 1px solid var(--glass);
+            border-right: 1px solid var(--glass);
+            position: relative;
         }
 
-        /* شريط الحالة الذكي */
-        .status-bar {
-            padding: 20px 30px;
+        /* الهيدر المطور */
+        header {
+            padding: 20px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass);
+        }
+
+        .user-profile {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(0,0,0,0.5);
-            z-index: 100;
         }
 
-        .ai-status {
+        .wallet-info {
+            text-align: left;
+            background: linear-gradient(90deg, var(--primary), #4c1d95);
+            padding: 5px 15px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+        }
+
+        /* منطقة التصفح (Scrollable) */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+            scrollbar-width: none;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            color: var(--accent);
+            margin: 20px 0 10px 0;
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 0.8rem;
-            color: var(--accent);
         }
 
-        .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            animation: pulse 1.5s infinite;
-        }
-
-        /* مراحل الرحلة */
-        .step {
-            display: none;
-            flex: 1;
-            flex-direction: column;
-            padding: 20px;
-            animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .step.active { display: flex; }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* الرادار المطور 3D */
-        .radar-container {
-            position: relative;
-            width: 320px;
-            height: 320px;
-            margin: 40px auto;
-            perspective: 1000px;
-        }
-
-        .grid-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(124, 58, 237, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(124, 58, 237, 0.1) 1px, transparent 1px);
-            background-size: 30px 30px;
-            transform: rotateX(60deg);
+        /* رادار الفزعة المطور */
+        .radar-box {
+            height: 250px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
             border-radius: 20px;
-        }
-
-        .radar-core {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 2px solid var(--primary);
-            border-radius: 50%;
-            animation: rotate 10s linear infinite;
-        }
-
-        .node {
-            position: absolute;
-            width: 45px;
-            height: 45px;
-            background: var(--glass);
-            border: 1px solid var(--accent);
-            border-radius: 12px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.4rem;
-            cursor: pointer;
-            transition: 0.4s;
-            box-shadow: var(--neon-glow);
-        }
-
-        .node:hover {
-            transform: scale(1.3) translateY(-10px);
-            background: var(--accent);
-            color: black;
-        }
-
-        /* نظام التنبيهات الاستباقية */
-        .insight-card {
-            background: rgba(255,255,255,0.05);
-            border-left: 4px solid var(--accent);
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
-            font-size: 0.9rem;
-            animation: bounce 2s infinite;
-        }
-
-        /* الربط اللاسلكي */
-        .sync-animation {
-            height: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .sync-circle {
-            width: 80px;
-            height: 80px;
-            border: 3px solid var(--success);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2rem;
-        }
-
-        .beam {
-            width: 100px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent), var(--success));
             position: relative;
+            border: 1px solid var(--glass);
             overflow: hidden;
         }
 
-        .beam::after {
-            content: '';
+        .scanner-line {
             position: absolute;
-            width: 30px;
-            height: 100%;
-            background: white;
-            animation: stream 1s infinite;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to bottom, transparent, rgba(0, 242, 255, 0.1));
+            animation: scanMove 3s infinite;
         }
 
-        @keyframes stream { 0% { left: -30px; } 100% { left: 100%; } }
-        @keyframes rotate { to { transform: rotate(360deg); } }
-        @keyframes pulse { 0% { opacity: 0.2; } 50% { opacity: 1; } 100% { opacity: 0.2; } }
+        @keyframes scanMove { 0% { top: -50%; } 100% { top: 100%; } }
 
-        /* الأزرار الفاخرة */
-        .btn-finish {
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            border: none;
-            padding: 15px 40px;
-            border-radius: 30px;
-            color: white;
-            font-weight: bold;
+        /* سوق الاستعارة (أدوات كافية) */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .tool-card {
+            background: var(--glass);
+            padding: 10px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 0.75rem;
+            border: 1px solid transparent;
             cursor: pointer;
-            margin-top: 20px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
-    </style>
-</head>
-<body>
 
-    <div class="device-frame">
-        <div class="status-bar">
-            <div class="ai-status">
-                <div class="pulse-dot"></div>
-                AI الحي نشط
-            </div>
-            <div id="global-score" style="color: var(--success); font-weight: bold;">🏆 150</div>
-        </div>
+        .tool-card:hover { border-color: var(--accent); background: rgba(0,242,255,0.05); }
 
-        <div id="step1" class="step active">
-            <div class="radar-container">
-                <div class="grid-bg"></div>
-                <div class="radar-core"></div>
-                <div class="node" style="top: 15%; left: 10%;" onclick="startFlow('أبو خالد', '🔨 مطرقة ثقيلة')">🔨</div>
-                <div class="node" style="top: 50%; right: 10%;" onclick="startFlow('منزل السعد', '🪜 سلم هيدروليك')">🪜</div>
-                <div class="node" style="bottom: 10%; left: 40%;" onclick="startFlow('المهندس فهد', '💡 فحص كهرباء')">💡</div>
-            </div>
-            <h2 style="color: var(--accent); text-shadow: var(--neon-glow);">رادار النخوة</h2>
+        /* القطية الذكية */
+        .funding-card {
+            background: rgba(16, 185, 129, 0.05);
+            border: 1px solid var(--success);
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #222;
+            border-radius: 3px;
+            margin: 10px 0;
+        }
+
+        .progress-fill { width: 65%; height: 100%; background: var(--success); border-radius: 3px; }
+
+        /* الحرفيين الموثوقين */
+        .pro-list {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .pro-card {
+            min-width: 100px;
+            background: var(--glass);
+            padding: 10px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .pro-card img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--warning); }
+
+        /* الأمن والخدمات */
+        .security-alert {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--danger);
+            padding: 12px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+        }
+
+        /* الإعلانات المحلية */
+        .local-ad {
+            background: linear-gradient(45deg, #1e1b4b, #312e81);
+            padding: 15px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border: 1px dashed var(--accent);
+        }
+
+        /* المدخلات */
+        .input-group {
+            background: var(--glass);
+            border-radius: 15px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        input { background: transparent; border: none; color: white; width: 100%; outline: none; font-family: 'Tajawal'; }
+
+        /* زر الفزعة العائم */
+        .fazza-btn {
+            position: absolute;
+            bottom

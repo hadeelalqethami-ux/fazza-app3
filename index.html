@@ -18,29 +18,53 @@
     <main>
         <section class="hero-section">
             <h1>حوّل "النخوة" إلى أصل رقمي موثق</h1>
-            <p>شارك أدواتك، ساهم بمهارتك، وابنِ مجتمعك (رؤية 2030).</p>
+            <p>استعارة أدوات، تقديم خدمات، وبناء مجتمع مترابط (رؤية 2030).</p>
             <div class="cta-buttons">
-                <button class="btn-primary" onclick="requestService('طلب أداة')">محتاج غرض؟</button>
+                <button class="btn-primary" onclick="showRadarOptions()">محتاج غرض؟</button>
+                <button class="btn-secondary" onclick="offerFazza()">ودي أفزع</button>
             </div>
-            <div class="main-image">
-                <img src="docs/radar.png" alt="رادار الفزعة الذكي">
+            
+            <div id="radar-options" class="hidden-options">
+                <h3>اختر نوع الفزعة:</h3>
+                <div class="options-grid">
+                    <button class="opt-btn" onclick="requestFazza('مطرقة')">🔨 مطرقة</button>
+                    <button class="opt-btn" onclick="requestFazza('سلم')">🪜 سلم</button>
+                    <button class="opt-btn" onclick="requestFazza('دريل')">⚙️ دريل</button>
+                    <button class="opt-btn" onclick="requestFazza('كهرباء')">💡 كهرباء</button>
+                </div>
             </div>
         </section>
 
-        <section class="tech-section">
-            <h2>الرهابة التقنية: الصناديق الذكية</h2>
-            <div class="image-wrapper">
-                <img src="docs/iot-box.png" alt="الصناديق الذكية في الأحياء">
-            </div>
-            <p>تبادل آمن، ذكي، وبدون تلامس لضمان خصوصية الجيران.</p>
-        </section>
+        <section class="prototype-showcase">
+            <h2>تجربة المستخدم الحية (Live MVP)</h2>
+            <div class="prototype-grid">
+                <div class="prototype-card">
+                    <div class="card-header">
+                        <span class="icon">🔍</span>
+                        <h3>رادار الحي الذكي</h3>
+                    </div>
+                    <div class="card-body radar-visual">
+                        <div class="radar-circle"></div>
+                        <div class="radar-dot dot-1" title="أبو خالد">👤</div>
+                        <div class="radar-dot dot-2" title="عائلة السالم">👤</div>
+                        <div class="radar-item item-1">🔨</div>
+                        <p>جارك "أبو خالد" متاح للمساعدة.</p>
+                    </div>
+                </div>
 
-        <section class="money-section">
-            <h2>نموذج الربح والاستدامة</h2>
-            <div class="image-wrapper">
-                <img src="docs/pro-dashboard.png" alt="لوحة تحكم فزعة برو">
+                <div class="prototype-card">
+                    <div class="card-header">
+                        <span class="icon">📦</span>
+                        <h3>الصناديق الذكية (IoT)</h3>
+                    </div>
+                    <div class="card-body boxes-visual">
+                        <div class="smart-box box-open">QR</div>
+                        <div class="smart-box box-closed">🔒</div>
+                        <div class="smart-box box-closed">🔒</div>
+                        <p>تبادل آمن وموثق للأدوات.</p>
+                    </div>
+                </div>
             </div>
-            <p>تمكين الفنيين المحليين بعمولة 10% تضمن استدامة المنصة.</p>
         </section>
     </main>
 

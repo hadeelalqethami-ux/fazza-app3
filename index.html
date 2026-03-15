@@ -3,71 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>فزعة جار | النخوة بمفهوم تقني</title>
+    <title>Fazza Jar | Experience 2026</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
+    <div class="app-container">
+        <nav class="glass-nav">
             <div class="logo">فزعة جار</div>
-            <div id="nakwa-status">مؤشر النخوة: <span id="points">150</span> 🏆</div>
+            <div class="user-score">
+                <span class="label">مؤشر النخوة</span>
+                <span id="score-value" class="value">150</span>
+                <span class="medal">🏆</span>
+            </div>
         </nav>
-    </header>
 
-    <main>
-        <section class="hero-section">
-            <h1>حوّل "النخوة" إلى أصل رقمي موثق</h1>
-            <p>استعارة أدوات، تقديم خدمات، وبناء مجتمع مترابط (رؤية 2030).</p>
-            <div class="cta-buttons">
-                <button class="btn-primary" onclick="showRadarOptions()">محتاج غرض؟</button>
-                <button class="btn-secondary" onclick="offerFazza()">ودي أفزع</button>
+        <div id="app-canvas" class="canvas">
+            <div id="step-1" class="step active">
+                <div class="radar-wrapper">
+                    <div class="radar-scanner"></div>
+                    <div class="ping p1" onclick="selectNeighbor('أبو خالد', '🔨 مطرقة')">🔨</div>
+                    <div class="ping p2" onclick="selectNeighbor('سارة', '💡 فني كهرباء')">💡</div>
+                    <div class="ping p3" onclick="selectNeighbor('عائلة السالم', '🪜 سلم')">🪜</div>
+                    <div class="user-center">📍</div>
+                </div>
+                <h2 class="glow-text">رادار الحي الذكي</h2>
+                <p>اكتشف "النخوة" من حولك.. اضغط على أي أيقونة للبدء</p>
             </div>
-            
-            <div id="radar-options" class="hidden-options">
-                <h3>اختر نوع الفزعة:</h3>
-                <div class="options-grid">
-                    <button class="opt-btn" onclick="requestFazza('مطرقة')">🔨 مطرقة</button>
-                    <button class="opt-btn" onclick="requestFazza('سلم')">🪜 سلم</button>
-                    <button class="opt-btn" onclick="requestFazza('دريل')">⚙️ دريل</button>
-                    <button class="opt-btn" onclick="requestFazza('كهرباء')">💡 كهرباء</button>
+
+            <div id="step-2" class="step">
+                <div class="connection-card">
+                    <div class="avatar-flow">
+                        <div class="user-icon">أنت</div>
+                        <div class="line"></div>
+                        <div id="target-neighbor" class="neighbor-icon">..</div>
+                    </div>
+                    <h3>جاري الربط مع الجار...</h3>
+                    <p id="request-detail"></p>
+                    <div class="loading-bar"><div class="progress"></div></div>
                 </div>
             </div>
-        </section>
 
-        <section class="prototype-showcase">
-            <h2>تجربة المستخدم الحية (Live MVP)</h2>
-            <div class="prototype-grid">
-                <div class="prototype-card">
-                    <div class="card-header">
-                        <span class="icon">🔍</span>
-                        <h3>رادار الحي الذكي</h3>
-                    </div>
-                    <div class="card-body radar-visual">
-                        <div class="radar-circle"></div>
-                        <div class="radar-dot dot-1" title="أبو خالد">👤</div>
-                        <div class="radar-dot dot-2" title="عائلة السالم">👤</div>
-                        <div class="radar-item item-1">🔨</div>
-                        <p>جارك "أبو خالد" متاح للمساعدة.</p>
-                    </div>
-                </div>
-
-                <div class="prototype-card">
-                    <div class="card-header">
-                        <span class="icon">📦</span>
-                        <h3>الصناديق الذكية (IoT)</h3>
-                    </div>
-                    <div class="card-body boxes-visual">
-                        <div class="smart-box box-open">QR</div>
-                        <div class="smart-box box-closed">🔒</div>
-                        <div class="smart-box box-closed">🔒</div>
-                        <p>تبادل آمن وموثق للأدوات.</p>
+            <div id="step-3" class="step">
+                <div class="success-card">
+                    <div class="success-icon">✅</div>
+                    <h2>تمت الفزعة بنجاح!</h2>
+                    <p>كيف كانت تجربة "النخوة" مع جارك؟</p>
+                    <div class="rating-stars">
+                        <span onclick="finalizeExperience()">⭐</span>
+                        <span onclick="finalizeExperience()">⭐</span>
+                        <span onclick="finalizeExperience()">⭐</span>
+                        <span onclick="finalizeExperience()">⭐</span>
+                        <span onclick="finalizeExperience()">⭐</span>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
-
+        </div>
+    </div>
     <script src="src/script.js"></script>
 </body>
 </html>

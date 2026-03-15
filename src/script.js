@@ -1,33 +1,31 @@
-// دالة إظهار خيارات الرادار عند الضغط على "محتاج غرض"
-function showRadarOptions() {
-    const optionsDiv = document.getElementById('radar-options');
-    optionsDiv.classList.toggle('show'); // إظهار أو إخفاء القائمة
-}
-
-// دالة طلب فزعة محددة
-function requestFazza(toolName) {
-    alert(`🔍 جاري البحث في 'رادار الحي' عن [${toolName}]...`);
+// دالة اختيار الجار وبدء الرحلة
+function selectNeighbor(name, tool) {
+    // الانتقال للمرحلة 2
+    document.getElementById('step-1').classList.remove('active');
+    document.getElementById('step-2').classList.add('active');
     
-    // محاكاة عملية الربط (تأخير ثانيتين)
+    document.getElementById('target-neighbor').innerText = name;
+    document.getElementById('request-detail').innerText = `جاري استعارة [${tool}] عبر الصندوق الذكي..`;
+
+    // بعد 3 ثواني (محاكاة الربط) ننتقل للتقييم
     setTimeout(() => {
-        alert(`✅ تم العثور على [${toolName}] عند جارك 'أبو خالد'! جاري فتح الصندوق الذكي رقم 1.`);
-        
-        // تحديث مؤشر النخوة
-        updateNakwaPoints(10);
-    }, 2000);
+        document.getElementById('step-2').classList.remove('active');
+        document.getElementById('step-3').classList.add('active');
+    }, 3500);
 }
 
-// دالة تقديم فزعة
-function offerFazza() {
-    alert("🌟 كفو! تم تسجيل استعدادك للفزعة. سيتم تنبيهك عند وجود طلب قريب منك.");
-    updateNakwaPoints(5); // زيادة النقاط للمبادرة
-}
-
-// دالة تحديث مؤشر النخوة
-function updateNakwaPoints(pointsToAdd) {
-    const pointsElement = document.getElementById('points');
-    if (pointsElement) {
-        let currentPoints = parseInt(pointsElement.innerText);
-        pointsElement.innerText = currentPoints + pointsToAdd;
-    }
+// دالة الإنهاء وتحديث السكور
+function finalizeExperience() {
+    // تحديث السكور
+    const scoreVal = document.getElementById('score-value');
+    let current = parseInt(scoreVal.innerText);
+    scoreVal.innerText = current + 15;
+    
+    alert("تم توثيق فزعتك! زاد مؤشر النخوة الخاص بك 🚀");
+    
+    // العودة للبداية
+    setTimeout(() => {
+        document.getElementById('step-3').classList.remove('active');
+        document.getElementById('step-1').classList.add('active');
+    }, 1000);
 }

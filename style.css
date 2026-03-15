@@ -1,70 +1,122 @@
 :root {
-    --primary-purple: #6C63FF;
-    --fazza-green: #2ECC71;
-    --dark-bg: #1A1A1D;
-    --glass: rgba(255, 255, 255, 0.05);
+    --bg: #09090b;
+    --primary: #8b5cf6; /* البنفسجي */
+    --accent: #10b981;  /* الأخضر */
+    --glass: rgba(255, 255, 255, 0.03);
+    --neon-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
 }
 
 body {
     margin: 0;
-    font-family: 'Tajawal', sans-serif;
-    background-color: var(--dark-bg);
+    background: var(--bg);
     color: white;
-    line-height: 1.6;
-    text-align: center;
+    font-family: 'Tajawal', sans-serif;
+    overflow: hidden;
+    height: 100vh;
 }
 
-/* الهيدر ومؤشر النخوة */
-.navbar {
+.app-container {
+    max-width: 450px;
+    margin: 0 auto;
+    height: 100%;
+    position: relative;
+    border-left: 1px solid var(--glass);
+    border-right: 1px solid var(--glass);
+}
+
+.glass-nav {
     display: flex;
     justify-content: space-between;
-    padding: 20px 50px;
-    background: rgba(0,0,0,0.3);
-    backdrop-filter: blur(10px);
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
+    align-items: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--glass);
 }
-.logo { font-size: 1.5rem; font-weight: bold; color: var(--fazza-green); }
-.nakwa-status { background: var(--glass); padding: 5px 15px; border-radius: 20px; }
 
-/* قسم الواجهة */
-section { padding: 120px 20px 60px 20px; }
-h1 { font-size: 3rem; color: var(--fazza-green); margin-bottom: 10px; }
-h2 { color: var(--primary-purple); font-size: 2rem; margin-top: 50px; }
+.user-score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(16, 185, 129, 0.1);
+    padding: 5px 15px;
+    border-radius: 12px;
+    border: 1px solid var(--accent);
+}
 
-/* الأزرار وخيارات الرادار */
-.cta-buttons { display: flex; gap: 20px; justify-content: center; margin-top: 30px; }
-button { border-radius: 30px; cursor: pointer; font-weight: bold; transition: 0.3s; font-size: 1.1rem; }
-.btn-primary { background: var(--fazza-green); border: none; padding: 15px 40px; color: #1A1A1D; }
-.btn-secondary { background: transparent; border: 2px solid var(--primary-purple); color: white; padding: 15px 40px; }
-.btn-primary:hover, .btn-secondary:hover { transform: scale(1.05); }
+/* الرادار الاحترافي */
+.radar-wrapper {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 50px auto;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+}
 
-.hidden-options { display: none; background: var(--glass); padding: 20px; border-radius: 20px; margin-top: 30px; border: 1px solid var(--glass); }
-.show { display: block !important; }
-.options-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 15px; }
-.opt-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 10px; color: white; }
-.opt-btn:hover { background: var(--primary-purple); }
+.radar-scanner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, transparent, var(--primary));
+    opacity: 0.2;
+    animation: rotate 4s linear infinite;
+}
 
-/* تصميم الواجهات بالكود (بدون صور) */
-.prototype-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1000px; margin: 40px auto; }
-.prototype-card { background: var(--glass); border-radius: 20px; padding: 25px; border: 1px solid var(--glass); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-.card-header { display: flex; align-items: center; justify-content: center; color: var(--fazza-green); font-size: 1.2rem; }
-.card-header .icon { font-size: 1.8rem; margin-left: 10px; }
-.card-body p { color: #CCC; margin-top: 15px; font-size: 0.9rem; }
+.ping {
+    position: absolute;
+    font-size: 24px;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 10;
+}
 
-/* رسم الرادار بالكود */
-.radar-visual { position: relative; height: 150px; background: rgba(0,0,0,0.2); border-radius: 10px; overflow: hidden; }
-.radar-circle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100px; height: 100px; border: 2px solid var(--fazza-green); border-radius: 50%; opacity: 0.5; animation: pulse 2s infinite; }
-.radar-dot, .radar-item { position: absolute; font-size: 1.2rem; }
-.dot-1 { top: 20%; left: 30%; color: white; }
-.dot-2 { bottom: 20%; right: 20%; color: #888; }
-.item-1 { top: 50%; left: 60%; color: var(--primary-purple); }
+.ping:hover { transform: scale(1.5); filter: drop-shadow(0 0 10px var(--primary)); }
+.p1 { top: 20%; left: 20%; }
+.p2 { top: 10%; right: 30%; }
+.p3 { bottom: 30%; left: 15%; }
 
-@keyframes pulse { 0% { width: 0; height: 0; opacity: 1; } 100% { width: 150px; height: 150px; opacity: 0; } }
+@keyframes rotate { 100% { transform: rotate(360deg); } }
 
-/* رسم الصناديق بالكود */
-.boxes-visual { display: flex; gap: 10px; justify-content: center; margin-top: 15px; }
-.smart-box { width: 60px; height: 60px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem; }
-.box-open { background: var(--fazza-green); color: #1A1A1D; border: 2px solid var(--fazza-green); }
-.box-closed { background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2); color: #888; }
+/* منطق المراحل */
+.step {
+    display: none;
+    padding: 20px;
+    animation: fadeIn 0.5s ease;
+}
+
+.step.active { display: block; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* بطاقات التفاعل */
+.connection-card, .success-card {
+    background: var(--glass);
+    padding: 40px 20px;
+    border-radius: 24px;
+    border: 1px solid rgba(255,255,255,0.1);
+    margin-top: 50px;
+}
+
+.loading-bar {
+    width: 100%;
+    height: 6px;
+    background: #222;
+    border-radius: 10px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.progress {
+    width: 0%;
+    height: 100%;
+    background: var(--accent);
+    animation: load 3s forwards;
+}
+
+@keyframes load { to { width: 100%; } }
+
+.rating-stars { font-size: 30px; cursor: pointer; margin-top: 20px; }
+.rating-stars span:hover { color: gold; }

@@ -3,49 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fazza Jar | The Future Neighborhood</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <title>Fazza Jar | Smart OS 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #070708; --primary: #7c3aed; --accent: #00f2ff; --success: #10b981; --glass: rgba(255, 255, 255, 0.05);
-            --neon: 0 0 20px rgba(124, 58, 237, 0.4);
+            --bg: #050507; --primary: #7c3aed; --accent: #00f2ff; --success: #10b981; --glass: rgba(255, 255, 255, 0.05);
+            --danger: #ff4757;
         }
         body { margin: 0; background: var(--bg); color: white; font-family: 'Tajawal', sans-serif; display: flex; justify-content: center; height: 100vh; overflow: hidden; }
         .app-frame { width: 100%; max-width: 420px; height: 100vh; background: #0c0c0e; display: flex; flex-direction: column; position: relative; border: 1px solid var(--glass); }
         
-        /* Header Stats */
         header { padding: 20px; background: rgba(0,0,0,0.8); border-bottom: 1px solid var(--glass); z-index: 1000; }
-        .header-top { display: flex; justify-content: space-between; align-items: center; }
-        .stats-row { display: flex; justify-content: space-between; margin-top: 15px; font-size: 0.8rem; color: var(--accent); border-top: 1px solid var(--glass); padding-top: 10px; }
+        .stats-row { display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.8rem; color: var(--accent); border-top: 1px solid var(--glass); padding-top: 10px; }
 
         .content { flex: 1; overflow-y: auto; padding: 20px; padding-bottom: 120px; scrollbar-width: none; }
         
-        /* الرادار الدوار */
-        .hero-radar { position: relative; height: 240px; background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 75%); border-radius: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 25px; overflow: hidden; border: 1px solid var(--glass); }
-        .radar-scanner { position: absolute; width: 220px; height: 220px; border-radius: 50%; background: conic-gradient(from 0deg, transparent, var(--primary)); opacity: 0.15; animation: rotate 4s linear infinite; }
-        .radar-circle { position: absolute; width: 150px; height: 150px; border: 1px solid var(--primary); border-radius: 50%; opacity: 0.3; animation: pulse 2s infinite; }
-        .marketing-msg { z-index: 10; text-align: center; padding: 0 15px; }
-        .marketing-msg h1 { font-size: 1.6rem; color: var(--accent); text-shadow: var(--neon); margin: 0; }
-        .marketing-msg p { font-size: 0.85rem; color: #ccc; margin-top: 8px; line-height: 1.4; }
-
+        /* رادار النخوة الدوار */
+        .hero-radar { position: relative; height: 220px; background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 75%); border-radius: 25px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 20px; overflow: hidden; border: 1px solid var(--glass); }
+        .radar-scanner { position: absolute; width: 300px; height: 300px; background: conic-gradient(from 0deg, transparent, var(--primary)); opacity: 0.15; animation: rotate 4s linear infinite; }
         @keyframes rotate { to { transform: rotate(360deg); } }
-        @keyframes pulse { 0% { transform: scale(0.9); opacity: 0.5; } 100% { transform: scale(1.2); opacity: 0; } }
 
-        /* Sections */
-        .section-header { color: var(--primary); font-weight: bold; margin: 25px 0 12px; font-size: 0.9rem; }
+        .section-header { color: var(--primary); font-weight: bold; margin: 25px 0 12px; font-size: 0.95rem; display: flex; justify-content: space-between; align-items: center; }
         .card { background: var(--glass); border-radius: 20px; padding: 18px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.05); }
-        .alert-card { background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; color: #ef4444; }
 
-        /* Tools & Nodes */
-        .tools-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-        .node { background: var(--glass); padding: 12px 5px; border-radius: 15px; text-align: center; font-size: 0.7rem; cursor: pointer; border: 1px solid transparent; }
-        .node:hover { border-color: var(--accent); background: rgba(0,242,255,0.05); }
+        /* Grid */
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+        .node { background: var(--glass); padding: 12px 5px; border-radius: 12px; text-align: center; font-size: 0.7rem; cursor: pointer; border: 1px solid transparent; transition: 0.2s; }
+        .node:hover { border-color: var(--accent); background: rgba(0, 242, 255, 0.05); }
 
-        /* Modals (The Windows) */
-        .modal { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #08080a; z-index: 2000; display: none; flex-direction: column; padding: 40px 25px; box-sizing: border-box; }
+        /* Modals */
+        .modal { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #08080a; z-index: 2000; display: none; flex-direction: column; padding: 30px 20px; box-sizing: border-box; overflow-y: auto; }
         .modal.active { display: flex; }
-        
-        .btn { background: var(--primary); border: none; color: white; padding: 15px; border-radius: 15px; cursor: pointer; font-weight: bold; width: 100%; font-family: 'Tajawal'; font-size: 1rem; margin-top: 10px; }
+
+        /* Chat UI */
+        .chat-box { flex: 1; background: rgba(255,255,255,0.02); border-radius: 15px; padding: 15px; margin: 15px 0; overflow-y: auto; }
+        .msg { padding: 10px 15px; border-radius: 15px; margin-bottom: 10px; max-width: 80%; font-size: 0.9rem; }
+        .msg.received { background: #222; align-self: flex-start; }
+        .msg.sent { background: var(--primary); align-self: flex-end; margin-right: auto; }
+
+        .btn { background: var(--primary); border: none; color: white; padding: 15px; border-radius: 15px; cursor: pointer; font-weight: bold; width: 100%; font-family: 'Tajawal'; margin-top: 10px; }
+        .btn-call { background: var(--success); }
         .btn-outline { background: transparent; border: 1px solid var(--primary); color: white; }
         input, textarea { background: var(--glass); border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 12px; color: white; margin: 10px 0; outline: none; width: 100%; box-sizing: border-box; font-family: 'Tajawal'; }
 
@@ -56,78 +54,124 @@
 
 <div class="app-frame">
     <header>
-        <div class="header-top">
-            <strong style="color: var(--primary);">فزعة جار</strong>
-            <div style="color: var(--success); font-weight: bold;">💎 <span id="score-val">2450</span></div>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <strong style="color:var(--primary); font-size:1.2rem;">فزعة جار</strong>
+            <div style="color:var(--success); font-weight:bold;">💎 <span id="score">2450</span></div>
         </div>
         <div class="stats-row">
-            <span>التوفير المجتمعي: <b id="money-val">12,400</b> ر.س</span>
-            <span>🌱 أثر البيئة: 42kg</span>
+            <span>توفير الحي: <b>12,400</b> ر.س</span>
+            <span>🌱 جيرة خضراء: 42kg</span>
         </div>
     </header>
 
     <div class="content">
         <div class="hero-radar">
             <div class="radar-scanner"></div>
-            <div class="radar-circle"></div>
-            <div class="marketing-msg">
-                <h1>رادار النخوة</h1>
-                <p>"حوّل جيرتك إلى أصل رقمي.. نحن نعيد هندسة الترابط الاجتماعي بلغة المستقبل."</p>
+            <div class="marketing-msg" style="z-index:10; text-align:center;">
+                <h1 style="color:var(--accent); text-shadow:0 0 15px var(--primary); margin:0;">رادار النخوة</h1>
+                <p style="font-size:0.8rem; opacity:0.8;">"نعيد هندسة الجيرة كأصل رقمي مستدام"</p>
             </div>
         </div>
 
-        <div class="card alert-card">
-            🚨 <strong>تنبيه أمني:</strong> رصد مركبة غير مسجلة في زون 4. تم إخطار أمن الحي.
-        </div>
+        <div class="section-header">📦 سوق الاستعارة (الأكثر طلباً)</div>
+        <div class="grid-4">
+            <div class="node" onclick="openSearch('🔨 مطرقة')">🔨<br>مطرقة</div>
+            <div class="node" onclick="openSearch('🪜 سلم')">🪜<br>سلم</div>
+            <div class="node" onclick="openSearch('⚙️ دريل')">⚙️<br>دريل</div>
+            <div class="node" onclick="openSearch('🪚 منشار')">🪚<br>منشار</div>
+            <div class="node" onclick="openSearch('🔧 مفتاح')">🔧<br>مفتاح</div>
+            <div class="node" onclick="openSearch('🔦 كشاف')">🔦<br>كشاف</div>
+            <div class="node" onclick="openSearch('🔋 شاحن')">🔋<br>شاحن</div>
+            <div class="node" onclick="openSearch('🏗️ رافعة')">🏗️<br>رافعة</div>
+            <div class="node" onclick="openSearch('🧹 مكنسة')">🧹<br>مكنسة</div>
+            <div class="node" onclick="openSearch('🧺 سلة')">🧺<br>سلة</div>
+            <div class="node" onclick="openSearch('🧯 طفاية')">🧯<br>طفاية</div>
+            <div class="node" onclick="openSearch('🔌 وصلة')">🔌<br>وصلة</div>
+            </div>
+        <input type="text" placeholder="اكتب احتياجك الخاص هنا (مثلاً: قدر ضغط كبير).." style="margin-top:10px;">
 
-        <div class="section-header">📦 سوق الاستعارة</div>
-        <div class="tools-grid">
-            <div class="node" onclick="openPage('toolModal', '🔨 مطرقة ثقيلة', 'أبو خالد')">🔨<br>مطرقة</div>
-            <div class="node" onclick="openPage('toolModal', '🪜 سلم 4 متر', 'عائلة السالم')">🪜<br>سلم</div>
-            <div class="node" onclick="openPage('toolModal', '⚙️ دريل لاسلكي', 'م. فيصل')">⚙️<br>دريل</div>
-            <div class="node" onclick="openPage('toolModal', '🪚 منشار كهربائي', 'أبو أحمد')">🪚<br>منشار</div>
-        </div>
-
-        <div class="section-header">🌱 مبادرة القطية</div>
-        <div class="card">
-            <p>تشجير المربع الرابع (65%)</p>
-            <button class="btn" style="background:var(--success)" onclick="openPage('fundingModal')">شارك الآن</button>
-        </div>
-
-        <div class="section-header">🎖️ حرفيون موثوقون</div>
+        <div class="section-header">🎖️ حرفيون زكاهم الجيران</div>
         <div style="display:flex; gap:10px; overflow-x:auto;">
-            <div class="node" style="min-width:80px;">👤<br>أبو أحمد</div>
-            <div class="node" style="min-width:80px;">👤<br>م. فيصل</div>
-            <div class="node" style="min-width:80px; border:1px dashed var(--primary);" onclick="openPage('proModal')">➕<br>أوصِ</div>
+            <div class="node" style="min-width:80px;">👤<br>أبو أحمد<br><small>سباك</small></div>
+            <div class="node" style="min-width:80px;">👤<br>م. فيصل<br><small>كهرباء</small></div>
+            <div class="node" style="min-width:80px;">👤<br>خالد<br><small>تكييف</small></div>
+            <div class="node" style="min-width:80px;">👤<br>سمير<br><small>نجار</small></div>
+            <div class="node" style="min-width:110px; border:1px dashed var(--primary);" onclick="openPage('proModal')">➕<br>أوصِ بحرفي</div>
         </div>
 
-        <div class="section-header">🍳 مطبخ الحي</div>
+        <div class="section-header">🌱 مشاريع الحي (القطية)</div>
         <div class="card">
-            <p>دعم الأسر المنتجة بخصم 15%</p>
-            <button class="btn" onclick="openPage('kitchenModal')">تفاصيل الاشتراك</button>
+            <p><strong>مبادرة تشجير المربع 4</strong> (65%)</p>
+            <button class="btn" style="background:var(--success)" onclick="openPage('fundingModal')">شارك أو اقترح قطية</button>
         </div>
 
-        <div class="section-header">🛡️ الخصوصية</div>
-        <div class="card">
-            <p>الصندوق الذكي (Smart Box)</p>
-            <button class="btn-outline btn" onclick="openPage('boxModal')">آلية الاستلام</button>
+        <div class="section-header">👩‍🍳 الأسر المنتجة المشتركة</div>
+        <div style="display:flex; gap:10px; overflow-x:auto; padding-bottom:10px;">
+            <div class="node" style="min-width:100px; background:rgba(255,255,255,0.05);">🍲<br>نكهة جاري</div>
+            <div class="node" style="min-width:100px; background:rgba(255,255,255,0.05);">🍰<br>حلويات زون 4</div>
+            <div class="node" style="min-width:100px; background:rgba(255,255,255,0.05);">🧶<br>خيوط الأمل</div>
+            <div class="node" style="min-width:100px; background:rgba(255,255,255,0.05);">🍯<br>عسل النحل</div>
+            <div class="node" style="min-width:100px; background:rgba(255,255,255,0.05);">🍞<br>خبز الدار</div>
+            <div class="node" style="min-width:100px; background:rgba(255,255,255,0.05);">☕<br>بن القهوة</div>
+            <div class="node" style="min-width:100px; background:rgba(255,255,255,0.05);">🥗<br>سلطات فريش</div>
+        </div>
+        <button class="btn-outline btn" onclick="openPage('kitchenModal')">لماذا تشترك في مطبخ الحي؟</button>
+
+        <div class="section-header">🔒 الصندوق الذكي (Smart Box)</div>
+        <div class="card" style="border-right:4px solid var(--accent);">
+            <p><strong>الخصوصية هي أولويتنا</strong></p>
+            <p style="font-size:0.8rem; color:#aaa;">لا داعي للإحراج أو المواعيد. استلم وسلم عبر الصناديق المشفرة. أمان 100% ومرونة 24/7.</p>
+            <button class="btn" style="background:var(--accent); color:black;" onclick="openPage('boxModal')">احجز صندوقك الآن</button>
         </div>
     </div>
 
-    <button class="fazza-btn" onclick="openPage('emergencyModal')">فزعة طارئة 🚨</button>
+    <button class="fazza-btn" onclick="triggerEmergency()">فزعة طارئة 🚨</button>
 
-    <div id="toolModal" class="modal">
-        <h2 id="t_name" style="color:var(--accent)"></h2>
-        <p>الجار الموفر: <b id="t_owner"></b></p>
-        <div class="card">📍 استلام آمن من الصندوق الذكي رقم 7</div>
-        <button class="btn" onclick="confirmSuccess('تم حجز الغرض! تفقد هاتفك لاستلام كود الصندوق.')">تأكيد الاستعارة</button>
-        <button class="btn-outline btn" onclick="closePage('toolModal')">إلغاء</button>
+    <div id="searchModal" class="modal">
+        <h2 id="searchTitle" style="color:var(--accent)">جاري البحث...</h2>
+        <div class="hero-radar" style="height:150px;">
+            <div class="radar-scanner"></div>
+            <p id="searchStatus">يتم الآن فحص 50 منزلاً مجاوراً...</p>
+        </div>
+        <div id="foundArea" style="display:none;">
+            <div class="card" style="border:1px solid var(--success)">
+                <p>✅ تم العثور على الغرض عند الجار: <b>أبو خالد</b></p>
+                <p>📍 الموقع: فيلا 14 (أو عبر الصندوق 3)</p>
+            </div>
+            <div class="chat-box" id="chat">
+                <div class="msg received">هلا جاري، المطرقة موجودة وحطيتها لك في الصندوق الذكي رقم 3.</div>
+                <div class="msg sent">تسلم ما قصرت، كفو يا جار!</div>
+            </div>
+            <button class="btn btn-call">📞 اتصل الآن</button>
+            <button class="btn" onclick="closePage('searchModal')">تم الاستلام</button>
+        </div>
+    </div>
+
+    <div id="emergencyModal" class="modal">
+        <h2 style="color:var(--danger)">إرسال نداء فزعة!</h2>
+        <div id="emergencyStatus" class="card">جاري إرسال إشارة SOS لـ 10 جيران متاحين...</div>
+        <div id="emergencyAction" style="display:none;">
+            <div class="card" style="background:rgba(255, 71, 87, 0.1)">
+                <p>👤 الجار المستجيب: <b>سلطان العتيبي</b></p>
+                <p>🕒 يصل إليك خلال: 2 دقيقة</p>
+            </div>
+            <div class="chat-box">
+                <div class="msg received">أبشر يا جار، أنا طالع الحين ومعي أغراض الإسعاف.</div>
+                <div class="msg sent">الله يبيض وجهك، أنا عند الباب الخارجي.</div>
+            </div>
+            <button class="btn btn-call">📞 اتصل بسلطان</button>
+            <button class="btn" style="background:var(--danger)" onclick="closePage('emergencyModal')">إنهاء النداء</button>
+        </div>
     </div>
 
     <div id="fundingModal" class="modal">
-        <h2>المشاركة في القطية</h2>
-        <input type="number" placeholder="المبلغ (ر.س)">
-        <button class="btn" style="background:var(--success)" onclick="confirmSuccess('شكراً لمساهمتك في تجميل الحي!')">تأكيد الإرسال</button>
+        <h2>مشاريع الحي</h2>
+        <input type="number" placeholder="المبلغ للمساهمة (ر.س)">
+        <hr style="opacity:0.1; margin:20px 0;">
+        <h3>💡 اقترح قطية جديدة</h3>
+        <input type="text" placeholder="عنوان المبادرة (مثلاً: مظلة للمسجد)">
+        <textarea placeholder="اشرح لنا الفكرة باختصار..."></textarea>
+        <button class="btn" onclick="confirmAction('تم استلام مقترحك! سيتم عرضه للتصويت بين الجيران.')">إرسال المقترح</button>
         <button class="btn-outline btn" onclick="closePage('fundingModal')">رجوع</button>
     </div>
 
@@ -136,65 +180,71 @@
         <input type="text" placeholder="اسم الحرفي">
         <input type="text" placeholder="التخصص">
         <input type="tel" placeholder="رقم الجوال">
-        <button class="btn" onclick="confirmSuccess('تم تسجيل التوصية، شكراً لتعاونك.')">إرسال</button>
+        <button class="btn" onclick="confirmAction('تم تسجيل التوصية، شكراً لتعاونك.')">إرسال التوصية</button>
         <button class="btn-outline btn" onclick="closePage('proModal')">رجوع</button>
     </div>
 
     <div id="kitchenModal" class="modal">
-        <h2>اشتراك الأسر المنتجة</h2>
-        <div class="card">💰 الرسوم: 29 ر.س / شهر</div>
-        <textarea placeholder="ملاحظاتك أو اقتراحاتك للخدمة..."></textarea>
-        <button class="btn" onclick="confirmSuccess('تم تفعيل اشتراكك ودعم أسر الحي!')">تأكيد الاشتراك</button>
-        <button class="btn-outline btn" onclick="closePage('kitchenModal')">إلغاء</button>
+        <h2>لماذا تشترك في مطبخ الحي؟</h2>
+        <div class="card">
+            <p>✨ <b>ادعم اقتصاد جيرانك:</b> أنت تشتري من أسر تعيش معك في نفس الزون.</p>
+            <p>🚚 <b>أسرع توصيل:</b> لأنهم جيرانك، الطلب يصلك في دقائق وبأقل تكلفة.</p>
+            <p>💎 <b>نقاط نخوة:</b> كل طلب يرفع رصيدك الرقمي في الحي.</p>
+        </div>
+        <button class="btn" onclick="confirmAction('مبارك! أنت الآن عضو في مطبخ الحي.')">تفعيل الاشتراك (29 ر.س/شهر)</button>
+        <button class="btn-outline btn" onclick="closePage('kitchenModal')">رجوع</button>
     </div>
 
     <div id="boxModal" class="modal">
-        <h2>الصندوق الذكي (Smart Box)</h2>
-        <div class="card">✅ استلام بخصوصية تامة دون لقاء مباشر.<br>✅ حماية للأدوات من التلف والضياع.</div>
-        <button class="btn" onclick="closePage('boxModal')">فهمت، مذهل!</button>
+        <h2>استثمر في خصوصيتك</h2>
+        <div class="card">
+            <p>الصندوق الذكي هو حلقة الوصل الآمنة. لا حاجة للمقابلات الشخصية، ضع غرضك، أغلق الصندوق، وسيقوم الجار بالاستلام عبر كود QR خاص.</p>
+        </div>
+        <button class="btn" onclick="confirmAction('تم حجز أقرب صندوق ذكي لك.')">حجز صندوق الآن</button>
+        <button class="btn-outline btn" onclick="closePage('boxModal')">رجوع</button>
     </div>
 
-    <div id="emergencyModal" class="modal">
-        <h2 style="color:#ef4444">نداء فزعة 🚨</h2>
-        <p>جاري الربط مع الجار: <b>سلطان بن محمد</b></p>
-        <p>📍 يصل إليك خلال 3 دقائق.</p>
-        <button class="btn" onclick="confirmSuccess('جارك في الطريق إليك الآن، كفو يا جيران!')">تأكيد النداء</button>
-        <button class="btn-outline btn" onclick="closePage('emergencyModal')">إلغاء</button>
-    </div>
-
-    <div id="successPage" class="modal">
-        <h1 style="color:var(--success)">عملية ناجحة ✨</h1>
-        <p id="s_msg"></p>
-        <div class="card">قيم تجربة النخوة: <br> ⭐ ⭐ ⭐ ⭐ ⭐</div>
-        <button class="btn" onclick="closePage('successPage')">العودة للرئيسية</button>
-    </div>
 </div>
 
 <script>
-    // دالة فتح الصفحات
-    function openPage(id, name = '', owner = '') {
+    // نظام الانتقال المحسن
+    function openPage(id) {
         document.getElementById(id).style.display = 'flex';
-        if(name) document.getElementById('t_name').innerText = name;
-        if(owner) document.getElementById('t_owner').innerText = owner;
     }
 
-    // دالة إغلاق الصفحات
     function closePage(id) {
         document.getElementById(id).style.display = 'none';
     }
 
-    // دالة التأكيد والنجاح
-    function confirmSuccess(msg) {
-        // إخفاء كل النوافذ
+    // محاكاة رادار الاستعارة
+    function openSearch(item) {
+        openPage('searchModal');
+        document.getElementById('searchTitle').innerText = "البحث عن " + item;
+        document.getElementById('foundArea').style.display = 'none';
+        document.getElementById('searchStatus').innerText = "يتم الآن فحص 50 منزلاً مجاوراً...";
+        
+        setTimeout(() => {
+            document.getElementById('searchStatus').innerText = "وجدنا طلبك!";
+            document.getElementById('foundArea').style.display = 'block';
+        }, 2500);
+    }
+
+    // محاكاة الفزعة الطارئة
+    function triggerEmergency() {
+        openPage('emergencyModal');
+        document.getElementById('emergencyAction').style.display = 'none';
+        document.getElementById('emergencyStatus').innerText = "جاري إرسال إشارة SOS لـ 10 جيران...";
+        
+        setTimeout(() => {
+            document.getElementById('emergencyStatus').style.display = 'none';
+            document.getElementById('emergencyAction').style.display = 'block';
+        }, 3000);
+    }
+
+    function confirmAction(msg) {
+        alert(msg);
         const modals = document.querySelectorAll('.modal');
         modals.forEach(m => m.style.display = 'none');
-        
-        // إظهار صفحة النجاح
-        document.getElementById('s_msg').innerText = msg;
-        document.getElementById('successPage').style.display = 'flex';
-
-        // تحديث الأرقام
-        document.getElementById('score-val').innerText = parseInt(document.getElementById('score-val').innerText) + 15;
     }
 </script>
 

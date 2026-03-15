@@ -11,8 +11,10 @@ body {
     background-color: var(--dark-bg);
     color: white;
     line-height: 1.6;
+    text-align: center;
 }
 
+/* الهيدر ومؤشر النخوة */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -23,40 +25,46 @@ body {
     width: 100%;
     z-index: 1000;
 }
+.logo { font-size: 1.5rem; font-weight: bold; color: var(--fazza-green); }
+.nakwa-status { background: var(--glass); padding: 5px 15px; border-radius: 20px; }
 
-section { 
-    padding: 100px 20px; 
-    text-align: center; 
-    border-bottom: 1px solid var(--glass); 
-}
+/* قسم الواجهة */
+section { padding: 120px 20px 60px 20px; }
+h1 { font-size: 3rem; color: var(--fazza-green); margin-bottom: 10px; }
+h2 { color: var(--primary-purple); font-size: 2rem; margin-top: 50px; }
 
-h1 { 
-    font-size: 3rem; 
-    color: var(--fazza-green); 
-}
-h2 { 
-    color: var(--primary-purple); 
-    font-size: 2rem; 
-}
+/* الأزرار وخيارات الرادار */
+.cta-buttons { display: flex; gap: 20px; justify-content: center; margin-top: 30px; }
+button { border-radius: 30px; cursor: pointer; font-weight: bold; transition: 0.3s; font-size: 1.1rem; }
+.btn-primary { background: var(--fazza-green); border: none; padding: 15px 40px; color: #1A1A1D; }
+.btn-secondary { background: transparent; border: 2px solid var(--primary-purple); color: white; padding: 15px 40px; }
+.btn-primary:hover, .btn-secondary:hover { transform: scale(1.05); }
 
-.main-image img, .image-wrapper img {
-    max-width: 90%;
-    border-radius: 20px;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-    margin-top: 40px;
-    transition: 0.5s;
-}
+.hidden-options { display: none; background: var(--glass); padding: 20px; border-radius: 20px; margin-top: 30px; border: 1px solid var(--glass); }
+.show { display: block !important; }
+.options-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 15px; }
+.opt-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 10px; color: white; }
+.opt-btn:hover { background: var(--primary-purple); }
 
-.main-image img:hover { 
-    transform: translateY(-10px); 
-}
+/* تصميم الواجهات بالكود (بدون صور) */
+.prototype-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1000px; margin: 40px auto; }
+.prototype-card { background: var(--glass); border-radius: 20px; padding: 25px; border: 1px solid var(--glass); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+.card-header { display: flex; align-items: center; justify-content: center; color: var(--fazza-green); font-size: 1.2rem; }
+.card-header .icon { font-size: 1.8rem; margin-left: 10px; }
+.card-body p { color: #CCC; margin-top: 15px; font-size: 0.9rem; }
 
-button {
-    background: var(--fazza-green);
-    border: none;
-    padding: 15px 40px;
-    border-radius: 30px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    cursor: pointer;
-}
+/* رسم الرادار بالكود */
+.radar-visual { position: relative; height: 150px; background: rgba(0,0,0,0.2); border-radius: 10px; overflow: hidden; }
+.radar-circle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100px; height: 100px; border: 2px solid var(--fazza-green); border-radius: 50%; opacity: 0.5; animation: pulse 2s infinite; }
+.radar-dot, .radar-item { position: absolute; font-size: 1.2rem; }
+.dot-1 { top: 20%; left: 30%; color: white; }
+.dot-2 { bottom: 20%; right: 20%; color: #888; }
+.item-1 { top: 50%; left: 60%; color: var(--primary-purple); }
+
+@keyframes pulse { 0% { width: 0; height: 0; opacity: 1; } 100% { width: 150px; height: 150px; opacity: 0; } }
+
+/* رسم الصناديق بالكود */
+.boxes-visual { display: flex; gap: 10px; justify-content: center; margin-top: 15px; }
+.smart-box { width: 60px; height: 60px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem; }
+.box-open { background: var(--fazza-green); color: #1A1A1D; border: 2px solid var(--fazza-green); }
+.box-closed { background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2); color: #888; }

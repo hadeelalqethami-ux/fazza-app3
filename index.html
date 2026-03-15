@@ -48,9 +48,6 @@
         input, textarea { background: var(--glass); border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 12px; color: white; margin: 10px 0; outline: none; width: 100%; box-sizing: border-box; font-family: 'Tajawal'; }
 
         .fazza-btn { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); background: linear-gradient(45deg, var(--primary), #4c1d95); padding: 18px 50px; border-radius: 40px; font-weight: bold; cursor: pointer; z-index: 1000; color: white; border: none; box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4); }
-
-        /* إضافة تنسيق للصور الجديدة */
-        .img-placeholder { width: 100%; border-radius: 15px; margin-bottom: 10px; border: 1px solid var(--glass); }
     </style>
 </head>
 <body>
@@ -94,7 +91,6 @@
         <input type="text" placeholder="اكتب احتياجك الخاص هنا (مثلاً: قدر ضغط كبير).." style="margin-top:10px;">
 
         <div class="section-header">🎖️ حرفيون زكاهم الجيران</div>
-        <img src="https://files.catbox.moe/93x67p.jpg" class="img-placeholder" alt="Craftsmen Dashboard">
         <div style="display:flex; gap:10px; overflow-x:auto;">
             <div class="node" style="min-width:80px;">👤<br>أبو أحمد<br><small>سباك</small></div>
             <div class="node" style="min-width:80px;">👤<br>م. فيصل<br><small>كهرباء</small></div>
@@ -123,7 +119,6 @@
 
         <div class="section-header">🔒 الصندوق الذكي (Smart Box)</div>
         <div class="card" style="border-right:4px solid var(--accent);">
-            <img src="https://files.catbox.moe/u0152x.jpg" class="img-placeholder" alt="Smart Box">
             <p><strong>الخصوصية هي أولويتنا</strong></p>
             <p style="font-size:0.8rem; color:#aaa;">لا داعي للإحراج أو المواعيد. استلم وسلم عبر الصناديق المشفرة. أمان 100% ومرونة 24/7.</p>
             <button class="btn" style="background:var(--accent); color:black;" onclick="openPage('boxModal')">احجز صندوقك الآن</button>
@@ -134,13 +129,11 @@
 
     <div id="searchModal" class="modal">
         <h2 id="searchTitle" style="color:var(--accent)">جاري البحث...</h2>
-        <img src="https://files.catbox.moe/o3jdf5.jpg" class="img-placeholder" style="height:150px; object-fit:cover;">
         <div class="hero-radar" style="height:150px;">
             <div class="radar-scanner"></div>
             <p id="searchStatus">يتم الآن فحص 50 منزلاً مجاوراً...</p>
         </div>
         <div id="foundArea" style="display:none;">
-            <img src="https://files.catbox.moe/v0yckk.jpg" class="img-placeholder" alt="Transaction Document">
             <div class="card" style="border:1px solid var(--success)">
                 <p>✅ تم العثور على الغرض عند الجار: <b>أبو خالد</b></p>
                 <p>📍 الموقع: فيلا 14 (أو عبر الصندوق 3)</p>
@@ -158,7 +151,6 @@
         <h2 style="color:var(--danger)">إرسال نداء فزعة!</h2>
         <div id="emergencyStatus" class="card">جاري إرسال إشارة SOS لـ 10 جيران متاحين...</div>
         <div id="emergencyAction" style="display:none;">
-            <img src="https://files.catbox.moe/g2449a.jpg" class="img-placeholder" alt="Neighbor Ali">
             <div class="card" style="background:rgba(255, 71, 87, 0.1)">
                 <p>👤 الجار المستجيب: <b>سلطان العتيبي</b></p>
                 <p>🕒 يصل إليك خلال: 2 دقيقة</p>
@@ -205,7 +197,6 @@
 
     <div id="boxModal" class="modal">
         <h2>استثمر في خصوصيتك</h2>
-        <img src="https://files.catbox.moe/u0152x.jpg" class="img-placeholder" alt="Smart Box Concept">
         <div class="card">
             <p>الصندوق الذكي هو حلقة الوصل الآمنة. لا حاجة للمقابلات الشخصية، ضع غرضك، أغلق الصندوق، وسيقوم الجار بالاستلام عبر كود QR خاص.</p>
         </div>

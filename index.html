@@ -3,63 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fazza Jar | Experience 2026</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Fazza Jar | تجربة النخوة 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0c0c0e;
+            --primary: #8b5cf6;
+            --accent: #10b981;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: white;
+            font-family: 'Tajawal', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 400px;
+            height: 90vh;
+            background: #131316;
+            border-radius: 40px;
+            border: 2px solid var(--glass);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Nav */
+        nav {
+            padding: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--glass);
+        }
+
+        .score-badge {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--accent);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Steps */
+        .step {
+            display: none;
+            flex: 1;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .step.active { display: flex; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Radar Interface */
+        .radar-box {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50%;
+            margin-bottom: 30px;
+        }
+
+        .scanner {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, transparent, var(--primary));
+            opacity: 0.15;
+            animation: scan 4s linear infinite;
+        }
+
+        .neighbor-node {
+            position: absolute;
+            background: var(--glass);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            transition: 0.3s;
+            z-index: 10;
+        }
+
+        .neighbor-node:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        @keyframes scan { to { transform: rotate(360deg); } }
+
+        /* Progress Interaction */
+        .loading-container {
+            width: 80%;
+            height: 8px;
+            background: #222;
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .bar {
+            width: 0%;
+            height: 100%;
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .active .bar { animation: fill 3s forwards; }
+
+        @keyframes fill { to { width: 100%; } }
+
+        /* Rating */
+        .stars { font-size: 2rem; gap: 10px; display: flex; margin-top: 20px; cursor: pointer; }
+        .stars span:hover { color: var(--accent); }
+
+        .btn-reset {
+            margin-top: 30px;
+            background: var(--primary);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
+
     <div class="app-container">
-        <nav class="glass-nav">
-            <div class="logo">فزعة جار</div>
-            <div class="user-score">
-                <span class="label">مؤشر النخوة</span>
-                <span id="score-value" class="value">150</span>
-                <span class="medal">🏆</span>
-            </div>
+        <nav>
+            <strong style="color: var(--primary)">فزعة جار</strong>
+            <div class="score-badge">🏆 نـخوة: <span id="main-score">150</span></div>
         </nav>
 
-        <div id="app-canvas" class="canvas">
-            <div id="step-1" class="step active">
-                <div class="radar-wrapper">
-                    <div class="radar-scanner"></div>
-                    <div class="ping p1" onclick="selectNeighbor('أبو خالد', '🔨 مطرقة')">🔨</div>
-                    <div class="ping p2" onclick="selectNeighbor('سارة', '💡 فني كهرباء')">💡</div>
-                    <div class="ping p3" onclick="selectNeighbor('عائلة السالم', '🪜 سلم')">🪜</div>
-                    <div class="user-center">📍</div>
-                </div>
-                <h2 class="glow-text">رادار الحي الذكي</h2>
-                <p>اكتشف "النخوة" من حولك.. اضغط على أي أيقونة للبدء</p>
+        <div id="step1" class="step active">
+            <div class="radar-box">
+                <div class="scanner"></div>
+                <div class="neighbor-node" style="top: 20%; left: 20%;" onclick="goNext('أبو أحمد', '🔨 مطرقة')">🔨</div>
+                <div class="neighbor-node" style="top: 10%; right: 25%;" onclick="goNext('عائلة خالد', '🪜 سلم')">🪜</div>
+                <div class="neighbor-node" style="bottom: 25%; left: 30%;" onclick="goNext('فني فيصل', '💡 كهرباء')">💡</div>
+                <div style="position: absolute; top:50%; left:50%; transform:translate(-50%, -50%); font-size: 2rem;">📍</div>
             </div>
+            <h2 style="color: var(--accent)">رادار النخوة نشط</h2>
+            <p>اختر الأداة أو الجار القريب منك للبدء</p>
+        </div>
 
-            <div id="step-2" class="step">
-                <div class="connection-card">
-                    <div class="avatar-flow">
-                        <div class="user-icon">أنت</div>
-                        <div class="line"></div>
-                        <div id="target-neighbor" class="neighbor-icon">..</div>
-                    </div>
-                    <h3>جاري الربط مع الجار...</h3>
-                    <p id="request-detail"></p>
-                    <div class="loading-bar"><div class="progress"></div></div>
-                </div>
-            </div>
+        <div id="step2" class="step">
+            <h2 id="connect-title">جاري التوصيل...</h2>
+            <p id="connect-desc"></p>
+            <div class="loading-container"><div class="bar"></div></div>
+            <div style="font-size: 4rem; margin-top: 20px;">📦</div>
+        </div>
 
-            <div id="step-3" class="step">
-                <div class="success-card">
-                    <div class="success-icon">✅</div>
-                    <h2>تمت الفزعة بنجاح!</h2>
-                    <p>كيف كانت تجربة "النخوة" مع جارك؟</p>
-                    <div class="rating-stars">
-                        <span onclick="finalizeExperience()">⭐</span>
-                        <span onclick="finalizeExperience()">⭐</span>
-                        <span onclick="finalizeExperience()">⭐</span>
-                        <span onclick="finalizeExperience()">⭐</span>
-                        <span onclick="finalizeExperience()">⭐</span>
-                    </div>
-                </div>
+        <div id="step3" class="step">
+            <div style="font-size: 5rem;">✅</div>
+            <h2 style="color: var(--accent)">تمت الفزعة!</h2>
+            <p>قيم تجربتك لتوثيق "النخوة" في ملف الجار</p>
+            <div class="stars">
+                <span onclick="finish()">⭐</span><span onclick="finish()">⭐</span><span onclick="finish()">⭐</span><span onclick="finish()">⭐</span><span onclick="finish()">⭐</span>
             </div>
         </div>
     </div>
-    <script src="src/script.js"></script>
+
+    <script>
+        function goNext(name, item) {
+            // الانتقال للمرحلة 2
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('step2').classList.add('active');
+            
+            document.getElementById('connect-title').innerText = `ربط مع ${name}`;
+            document.getElementById('connect-desc').innerText = `طلب استعارة ${item} قيد التنفيذ الآن..`;
+
+            // محاكاة انتهاء العملية
+            setTimeout(() => {
+                document.getElementById('step2').classList.remove('active');
+                document.getElementById('step3').classList.add('active');
+            }, 3200);
+        }
+
+        function finish() {
+            const score = document.getElementById('main-score');
+            score.innerText = parseInt(score.innerText) + 15;
+            
+            alert("كفو! تم تحديث مؤشر النخوة الخاص بك وبجيرانك 🏆");
+            
+            // العودة للبداية
+            setTimeout(() => {
+                document.getElementById('step3').classList.remove('active');
+                document.getElementById('step1').classList.add('active');
+            }, 500);
+        }
+    </script>
 </body>
 </html>
